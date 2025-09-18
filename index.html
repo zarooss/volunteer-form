@@ -1,0 +1,553 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer With Us – Inter-Tertiary Writing Competition</title>
+    <style>
+        :root {
+            --royal-blue: #004280;
+            --navy-blue: #00234b;
+            --black: #000000;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--royal-blue), var(--navy-blue));
+            color: var(--white);
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .logo-placeholder {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        
+        .logo-img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        .header-title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s 0.3s forwards;
+        }
+        
+        .header-subtitle {
+            font-size: 1.25rem;
+            text-align: center;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 1s 0.6s forwards;
+        }
+        
+        main {
+            padding: 3rem 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .intro-paragraph {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s forwards;
+        }
+        
+        .form-container {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s 0.3s forwards;
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--navy-blue);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 0 3px rgba(0, 66, 128, 0.1);
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .checkbox-group {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .checkbox-group {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-item input {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+        
+        .file-upload {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 2rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--royal-blue);
+            background-color: rgba(0, 66, 128, 0.05);
+        }
+        
+        .file-upload-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1rem;
+            color: #999;
+        }
+        
+        .file-name {
+            margin-top: 1rem;
+            color: var(--royal-blue);
+            font-weight: 600;
+        }
+        
+        .consent-container {
+            display: flex;
+            align-items: flex-start;
+            margin: 1rem 0;
+        }
+        
+        .consent-container input {
+            width: auto;
+            margin-right: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(to right, var(--royal-blue), var(--navy-blue));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(to right, var(--navy-blue), var(--royal-blue));
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: 3rem 1rem;
+            display: none;
+        }
+        
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            background-color: #d4edda;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: #155724;
+        }
+        
+        .success-title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .success-text {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--royal-blue);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.75;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-placeholder">
+                <img src="https://i.ibb.co/21PhmZ2S/IMG-20250627-WA0011-removebg-preview.png " alt="Let's Talk Logo" class="logo-img">
+            </div>
+            <h1 class="header-title">Volunteer With Us – Inter-Tertiary Writing Competition</h1>
+            <p class="header-subtitle">Be a part of the movement shaping the next generation of creative voices.</p>
+        </div>
+    </header>
+
+    <main>
+        <p class="intro-paragraph">
+            We are calling on passionate and skilled students from tertiary institutions across Rivers State to volunteer for the Let's Talk Inter-Tertiary Writing Competition. Join us to make an impact while gaining experience, networking, and receiving volunteer certification.
+        </p>
+
+        <div class="form-container" id="volunteerFormContainer">
+            <form id="volunteerForm" action="https://formsubmit.co/mhiztazaro@gmail.com " method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="_next" value="">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="New Volunteer Application - Inter-Tertiary Writing Competition">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="you@example.com">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number (WhatsApp preferred) *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+234 XXX XXX XXXX">
+                    </div>
+                    <div class="form-group">
+                        <label for="institution">Tertiary Institution *</label>
+                        <input type="text" id="institution" name="institution" required placeholder="Your university or college">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="course">Course of Study / Department *</label>
+                        <input type="text" id="course" name="course" required placeholder="e.g., Mass Communication">
+                    </div>
+                    <div class="form-group">
+                        <label for="level">Level / Year of Study *</label>
+                        <input type="text" id="level" name="level" required placeholder="e.g., 300 Level, Year 3">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Preferred Volunteer Role(s) *</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="publicity" name="roles" value="Publicity & Social Media">
+                            <label for="publicity">Publicity & Social Media</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="eventPlanning" name="roles" value="Event Planning & Logistics">
+                            <label for="eventPlanning">Event Planning & Logistics</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="judging" name="roles" value="Judging & Editorial Support">
+                            <label for="judging">Judging & Editorial Support</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="technical" name="roles" value="Technical / ICT Support">
+                            <label for="technical">Technical / ICT Support</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="media" name="roles" value="Media (Photo/Video)">
+                            <label for="media">Media (Photo/Video)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pr" name="roles" value="PR & Communications">
+                            <label for="pr">PR & Communications</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="onsite" name="roles" value="On-site Coordination">
+                            <label for="onsite">On-site Coordination</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="registration" name="roles" value="Registration / Front Desk">
+                            <label for="registration">Registration / Front Desk</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ushering" name="roles" value="Ushering & Guest Coordination">
+                            <label for="ushering">Ushering & Guest Coordination</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="motivation">Why do you want to volunteer? *</label>
+                    <textarea id="motivation" name="motivation" rows="4" required placeholder="Tell us why you're interested in volunteering..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="idFile">Upload Student ID or Any School-Affiliated ID *</label>
+                    <div class="file-upload" id="fileUploadArea">
+                        <svg class="file-upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <p>Click to upload or drag and drop</p>
+                        <p class="small">PNG, JPG, GIF or PDF (max. 10MB)</p>
+                        <span id="fileName" class="file-name"></span>
+                    </div>
+                    <input type="file" id="idFile" name="idFile" accept="image/*,.pdf" style="display: none;" required>
+                </div>
+
+                <div class="consent-container">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent">I agree to commit to the responsibilities assigned during the planning and execution of the competition.</label>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <h3 class="success-title">Thank You!</h3>
+                <p class="success-text">Your volunteer application has been successfully submitted.</p>
+                <p>We'll review your application and get back to you soon.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-title">Powered by Let’s Talk</p>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">Facebook</a>
+                <a href="#">WhatsApp</a>
+            </div>
+            <p class="copyright">&copy; <span id="currentYear">2023</span> Let's Talk. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // File upload handling
+            const fileUploadArea = document.getElementById('fileUploadArea');
+            const fileInput = document.getElementById('idFile');
+            const fileName = document.getElementById('fileName');
+            
+            fileUploadArea.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    fileName.textContent = this.files[0].name;
+                } else {
+                    fileName.textContent = '';
+                }
+            });
+            
+            // Form submission with AJAX to keep our success message
+            const volunteerForm = document.getElementById('volunteerForm');
+            const volunteerFormContainer = document.getElementById('volunteerFormContainer');
+            const successMessage = document.getElementById('successMessage');
+            
+            volunteerForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                const submitBtn = this.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
+                
+                const formData = new FormData(this);
+                
+                try {
+                    const response = await fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    
+                    if (response.ok) {
+                        // Show our success message
+                        volunteerForm.style.display = 'none';
+                        successMessage.style.display = 'block';
+                        
+                        // Reset form after 3 seconds
+                        setTimeout(function() {
+                            successMessage.style.display = 'none';
+                            volunteerForm.reset();
+                            fileName.textContent = '';
+                            volunteerForm.style.display = 'block';
+                        }, 3000);
+                    } else {
+                        alert('There was an error submitting your form. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    alert('There was an error submitting your form. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
